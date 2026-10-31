@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-crema: #faf8f5;
+  --color-arena: #c4a484;
+  --color-arena-dark: #a98a68;
+  --color-cielo: #7ea8be;
+  --color-cielo-dark: #5b87a2;
+  --color-cielo-light: #dce9f1;
+  --color-mostaza: #f2c14e;
+  --color-mostaza-soft: #f8dcaa;
+  --color-ink: #5c4636;
+
+  --font-fredoka: "Fredoka", sans-serif;
+  --font-quicksand: "Quicksand", sans-serif;
+  --font-caveat: "Caveat", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf8f5;
+  color: #5c4636;
+  font-family: "Quicksand", sans-serif;
+}
+
+::selection {
+  background-color: #f8dcaa;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fredoka", sans-serif;
+}
+
+input.check {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  border: 2px solid #c4a484;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+input.check:checked {
+  background: #f2c14e;
+  border-color: #f2c14e;
+}
+
+input.check:checked::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #5c3d00;
+}
