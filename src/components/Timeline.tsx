@@ -6,7 +6,7 @@ export default function Timeline() {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
-    <section id="historia" className="scroll-mt-24 bg-crema px-4 py-24 md:py-28">
+    <section id="historia" className="scroll-mt-24 bg-crema px-4 py-20 sm:py-24 md:py-28">
       <div className="mx-auto max-w-3xl">
         <SectionHeader
           icon="📖"
@@ -34,17 +34,23 @@ export default function Timeline() {
               >
                 <span className={dotClass} />
                 <div
-                  className={`relative rounded-[2rem] border bg-white p-4 shadow-xl transition-all duration-300 md:p-6 ${
+                  className={`relative rounded-[2rem] border bg-surface p-4 shadow-xl transition-all duration-300 sm:p-5 md:p-6 ${
                     active
                       ? 'border-cielo shadow-2xl'
                       : 'border-arena/20 hover:-translate-y-1 hover:shadow-2xl'
                   }`}
                 >
-                  <img src={m.src} alt={m.alt} className="h-44 w-full rounded-2xl object-cover" />
-                  <span className="mt-4 inline-block rounded-full bg-cielo px-3 py-1 font-fredoka text-xs font-semibold uppercase tracking-widest text-white shadow-md">
+                  <img
+                    src={m.src}
+                    alt={m.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-40 w-full rounded-2xl object-cover sm:h-44"
+                  />
+                  <span className="mt-4 inline-block rounded-full bg-cielo px-3 py-1 font-fredoka text-xs font-semibold uppercase tracking-widest text-white shadow-md dark:text-crema">
                     {m.date}
                   </span>
-                  <h3 className="mt-3 font-fredoka text-2xl font-semibold text-ink md:text-3xl">{m.title}</h3>
+                  <h3 className="mt-3 font-fredoka text-xl font-semibold text-ink sm:text-2xl md:text-3xl">{m.title}</h3>
                   <p className="mt-1 font-quicksand font-medium text-ink/80">{m.desc}</p>
                   {active ? (
                     <p className="mt-3 rounded-2xl bg-crema p-4 font-quicksand font-medium text-ink/90">{m.full}</p>

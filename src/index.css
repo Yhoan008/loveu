@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-crema: #faf8f5;
   --color-arena: #c4a484;
@@ -11,24 +13,51 @@
   --color-mostaza: #f2c14e;
   --color-mostaza-soft: #f8dcaa;
   --color-ink: #5c4636;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f3ede6;
 
   --font-fredoka: "Fredoka", sans-serif;
   --font-quicksand: "Quicksand", sans-serif;
   --font-caveat: "Caveat", cursive;
 }
 
+/*
+ * Tema oscuro: sobreescribimos los tokens de color del tema.
+ * Las utilidades de Tailwind usan estas variables, así que toda la UI
+ * cambia a la vez sin duplicar clases `dark:` por todos lados.
+ */
+html.dark {
+  color-scheme: dark;
+  --color-crema: #14100e;
+  --color-arena: #b89a79;
+  --color-arena-dark: #e0c2a0;
+  --color-cielo: #8fbfd8;
+  --color-cielo-dark: #b2d6e8;
+  --color-cielo-light: #26363f;
+  --color-mostaza: #f2c14e;
+  --color-mostaza-soft: #4a3a20;
+  --color-ink: #f4ede4;
+  --color-surface: #221c18;
+  --color-surface-soft: #2c241f;
+}
+
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: #faf8f5;
-  color: #5c4636;
+  background-color: var(--color-crema);
+  color: var(--color-ink);
   font-family: "Quicksand", sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-  background-color: #f8dcaa;
+  background-color: var(--color-mostaza-soft);
+  color: var(--color-ink);
 }
 
 h1,
@@ -37,22 +66,28 @@ h3 {
   font-family: "Fredoka", sans-serif;
 }
 
+:where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-cielo);
+  outline-offset: 3px;
+}
+
 input.check {
   appearance: none;
   -webkit-appearance: none;
   position: relative;
   width: 1.75rem;
   height: 1.75rem;
+  flex-shrink: 0;
   border-radius: 9999px;
-  border: 2px solid #c4a484;
-  background: #ffffff;
+  border: 2px solid var(--color-arena);
+  background: var(--color-surface);
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 input.check:checked {
-  background: #f2c14e;
-  border-color: #f2c14e;
+  background: var(--color-mostaza);
+  border-color: var(--color-mostaza);
 }
 
 input.check:checked::after {
@@ -63,4 +98,18 @@ input.check:checked::after {
   place-items: center;
   font-weight: 700;
   color: #5c3d00;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
